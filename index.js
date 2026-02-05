@@ -2,7 +2,7 @@ const { google } = require("googleapis")
 const express = require("express")
 const cors = require("cors")
 const app = express()
-const PORT = 3030
+const PORT = process.env.PORT || 3030
 
 app.use(cors());
 app.use(express.json());
@@ -12,9 +12,9 @@ app.use(express.json());
 
 async function accessSpreadsheet() {
     const SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-    const spreadsheetId = "1d9Y8mu2Net8senNsEt6HOkCLOWo_s1veKtxKSOOqrgE"
+    const spreadsheetId = process.env.ID
     const auth = new google.auth.GoogleAuth({
-        keyFile: "credentials.json",
+        keyFile: JSON.parse(process.env.GOOGLE_CREDENTIALS),
         scopes: SCOPES
     });
     const client = await auth.getClient();
