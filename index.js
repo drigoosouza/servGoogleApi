@@ -1,8 +1,13 @@
 const { google } = require("googleapis")
 const express = require("express")
 const cors = require("cors")
+require("dotenv").config()
 const app = express()
 const PORT = process.env.PORT || 3030
+
+console.log(process.env.PORT)
+console.log(process.env.GOOGLE_CREDENTIALS)
+console.log(JSON.parse(process.env.GOOGLE_CREDENTIALS))
 
 app.use(cors());
 app.use(express.json());
@@ -14,7 +19,7 @@ async function accessSpreadsheet() {
     const SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
     const spreadsheetId = process.env.ID
     const auth = new google.auth.GoogleAuth({
-        keyFile: JSON.parse(process.env.GOOGLE_CREDENTIALS),
+        credentials:JSON.parse(process.env.GOOGLE_CREDENTIALS),
         scopes: SCOPES
     });
     const client = await auth.getClient();
@@ -62,4 +67,4 @@ app.post("/add", async (req, res) => {
     }
 })
 
-app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`))
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`))
