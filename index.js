@@ -31,7 +31,7 @@ async function accessSpreadsheet() {
     }
 };
 
-app.post("/", async (req, res) => {
+app.post("/add", async (req, res) => {
 
     const {name,time, number, email} = req.body
     try {
