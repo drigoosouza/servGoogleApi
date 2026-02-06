@@ -5,10 +5,6 @@ require("dotenv").config()
 const app = express()
 const PORT = process.env.PORT || 3030
 
-console.log(process.env.PORT)
-console.log(process.env.GOOGLE_CREDENTIALS)
-console.log(JSON.parse(process.env.GOOGLE_CREDENTIALS))
-
 app.use(cors());
 app.use(express.json());
 
